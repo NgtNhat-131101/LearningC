@@ -1,34 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// cap phat tinh
+/*
+This file will write and read an array using dynamic array
+*/
+
 typedef struct
 {
-    char *name;
-    int age;
-    float score;
-} info_t;
+    int *array;
+    int size;
+} intArray;
+
+
+intArray write_array()
+{
+    intArray result;
+    printf("Size of Array: "); scanf("%d", &result.size);
+
+    result.array = (int*)malloc(result.size*sizeof(int));
+
+    for (int i = 0; i < result.size; i++)
+    {
+        printf("Array[%d]: ", i);
+        scanf("%d", result.array+i);
+    }
+    return result;
+}
+
+void read_array(intArray arr)
+{
+    printf("============Cac phan tu trong mang=============\n");
+    for (int i = 0; i < arr.size; i++)
+    {
+        printf("Arr[%d] = %d\n", i, *arr.array + i);
+    }
+}
 
 
 int main()
 {   
-    // tao 1 mang 10 phan tu kieu int
-    // int *pt = calloc(10, sizeof(int));
+    intArray dynamicArray = write_array();
+    read_array(dynamicArray);
     
-    info_t *student;
-    student = malloc(1*sizeof(int));
-    student->name = malloc(50);
-    printf("Nhap ten: ");
-    fgets((student->name), sizeof(student->name), stdin);
-
-    printf("Nhap tuoi: ");
-    scanf("%d", &student->age);
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-
-    printf("Nhap diem: ");
-    scanf("%f", &student->score);
-    free(student->name);
-    free(student);
     return 0;
 }
