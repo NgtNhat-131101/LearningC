@@ -32,15 +32,40 @@ void read_array(intArray arr)
     printf("============Cac phan tu trong mang=============\n");
     for (int i = 0; i < arr.size; i++)
     {
-        printf("Arr[%d] = %d\n", i, *arr.array + i);
+        printf("Arr[%d] = %d\n", i, *(arr.array + i));
     }
 }
 
+intArray add_element(intArray oldArray)
+{
+    intArray result;
+
+    int new_element;
+    result.size = oldArray.size + 1;
+
+    printf("Nhap vao phan tu can them: "); scanf("%d", &new_element);
+    result.array = (int *)calloc((result.size), sizeof(int));
+
+    for (int i = 0; i < result.size; i++)
+    {
+        *(result.array + i) = oldArray.array[i];
+    }
+    *(result.array + result.size - 1) = new_element;
+
+    free(oldArray.array);
+
+    return result;
+}
 
 int main()
 {   
     intArray dynamicArray = write_array();
     read_array(dynamicArray);
-    
+
+    // int new_element;
+    intArray new_array = add_element(dynamicArray);
+    read_array(new_array);
+
+    free(new_array.array);
     return 0;
 }

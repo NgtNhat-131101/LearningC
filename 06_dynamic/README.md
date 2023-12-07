@@ -16,6 +16,6 @@
 
     Number of params: 2
 
-    Purpose: allocate a memory region with `num` elements, and each size is `size`.
+    Purpose: allocate a memory region with `num` elements, and each element's size is `size`.
 
     Initialization: 0.
