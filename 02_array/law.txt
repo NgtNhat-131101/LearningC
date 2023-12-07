@@ -1,0 +1,2 @@
+truyen tham tri: -> sau khi ket thuc ham, bien se khong bi thay doi
+truyen tham chieu -> sau khi ket thuc ham, bien se bi thay doi (do tac dong truc tiep len o nho)
