@@ -30,6 +30,7 @@ intArray write_array()
 void read_array(intArray arr)
 {
     printf("============Cac phan tu trong mang=============\n");
+    printf("\n");
     for (int i = 0; i < arr.size; i++)
     {
         printf("Arr[%d] = %d\n", i, *(arr.array + i));
@@ -61,7 +62,7 @@ intArray Delete_Element(intArray OldArray, int position)
 {
     intArray result;
     printf("Your array have %d elements: \n", OldArray.size);
-    printf("Enter your position you want to remove: ");
+    printf("Enter position that you want to remove: ");
     scanf("%d", &position);
 
     result.size = OldArray.size - 1;

@@ -1,0 +1,4 @@
+Write a program to manage a maximum of 10 students with dynamic memory allocation.
+
+Functions: Add, Modify, Delete student information
+Select functionality
