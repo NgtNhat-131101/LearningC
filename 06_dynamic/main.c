@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /*
-This file will write and read an array using dynamic array
+This file will write, read, add, delete an array using dynamic array
 */
 
 typedef struct
@@ -57,6 +57,29 @@ intArray add_element(intArray oldArray)
     return result;
 }
 
+intArray Delete_Element(intArray OldArray, int position)
+{
+    intArray result;
+    printf("Your array have %d elements: \n", OldArray.size);
+    printf("Enter your position you want to remove: ");
+    scanf("%d", &position);
+
+    result.size = OldArray.size - 1;
+    result.array = (int *)calloc((result.size), sizeof(int));
+    int resultIndex = 0;
+    for (int i = 0; i < OldArray.size; i++){
+        if (position != i)
+        {
+            result.array[resultIndex] = OldArray.array[i];
+            resultIndex++;
+        }
+
+    }
+
+    free(OldArray.array);
+    return result;
+}
+
 int main()
 {   
     intArray dynamicArray = write_array();
@@ -66,6 +89,9 @@ int main()
     intArray new_array = add_element(dynamicArray);
     read_array(new_array);
 
-    free(new_array.array);
+    intArray result = Delete_Element(new_array, 1);
+    read_array(result);
+
+    free(result.array);
     return 0;
 }
