@@ -15,15 +15,15 @@ typedef struct
 } list_info;
 
 void Write_student(list_info *students) {
-    if (students->size >= 10) {
-        printf("Limit 10 students!\n");
-        return;
-    }
-
     printf("Number of students: ");
     scanf("%d", &students->size);
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
+
+    if (students->size >= 10) {
+        printf("Limit 10 students!\n");
+        return;
+    }
 
     students->list = (student_t *)malloc(students->size * sizeof(student_t));
 
@@ -54,9 +54,33 @@ void read_info(list_info students)
     }
 }
 
-void Add_student(list_info students);
-void Modify(list_info students);
-void Delete_student(list_info students);
+list_info Add_student(list_info Oldstudents, student_t *new_student)
+{   
+    list_info result;
+    result.size = Oldstudents.size + 1;
+    new_student->name = (char *)malloc(50*sizeof(char));
+
+    // Input 
+    int c;
+    printf("Enter information of new student \n");
+    printf("Name of student: ");
+    fgets(new_student->name, 50, stdin);
+    printf("Age: "); scanf("%d", &new_student->age);
+
+    printf("Score: "); scanf("%f", &new_student->score);
+
+    for (int i = 0; i < result.size; i++)
+    {
+        *(result.list + i) = Oldstudents.list[i];
+    }
+
+    result.list[result.size - 1] = *new_student;
+
+    // free(Oldstudents.list);
+    return result;
+}
+void Modify(list_info students, int index);
+void Delete_student(list_info students, int position);
 
 int main()
 {
@@ -68,6 +92,28 @@ int main()
     printf("READ INFO OF STUDENTS\n");
     printf("||==================================||\n\n");
     read_info(students);
-    free(students.list);
+
+    student_t *new_student;
+
+
+    // If you use pointer, you need to allocate new memory
+    // If you use value variable, you don't neet to allocate new memory
+    /*
+    You can do 2 line of code below in another way:
+
+    ==============================
+    student_t new_student;
+    Add_student(students, &new_student)
+    ==============================
+
+    */
+    new_student = (student_t*)malloc(sizeof(student_t));
+    list_info result;
+    result = Add_student(students, new_student);
+    printf("READ INFO OF STUDENTS\n");
+    printf("||==================================||\n\n");
+    read_info(result);
+
+    free(result.list);
     return 0;
 }
