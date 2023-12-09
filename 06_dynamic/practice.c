@@ -79,8 +79,58 @@ list_info Add_student(list_info Oldstudents, student_t *new_student)
     // free(Oldstudents.list);
     return result;
 }
-void Modify(list_info students, int index);
-void Delete_student(list_info students, int position);
+void Modify(list_info *students)
+{
+    int position;
+    printf("Position of student you want to modify (0, %d): ", students->size - 1); scanf("%d", &position);
+    
+    if (position < 0 || position >= students->size) {
+        // Handle invalid position
+        printf("Invalid position\n");
+        return;
+    }
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+
+    printf("New name for student: ");
+    fgets(students->list[position].name, 50, stdin);
+    printf("Age: "); scanf("%d", &students->list[position].age);
+    printf("Score: "); scanf("%f", &students->list[position].score);
+
+    while ((c = getchar()) != '\n' && c != EOF);
+    
+
+    printf("Information modified successfully.\n");
+}
+
+list_info Delete_student(list_info students)
+{
+    list_info result;
+    int position;
+    printf("Index of Student you want to remove (0, %d): ", students.size - 1); scanf("%d", &position);
+    result.size = students.size - 1;
+    int index = 0;
+
+    if (position < 0 || position >= students.size) {
+
+        printf("Invalid position\n");
+        result.size = students.size;
+        result.list = students.list;
+        return result;
+    }
+
+    result.list = (student_t *)malloc(result.size*sizeof(student_t));
+
+    for (int i = 0; i < students.size; i++)
+    {
+        if (i != position)
+        {
+            result.list[index] = students.list[i];
+            index++;
+        }
+    }
+    return result;
+}
 
 int main()
 {
@@ -112,6 +162,10 @@ int main()
     result = Add_student(students, new_student);
     printf("READ INFO OF STUDENTS\n");
     printf("||==================================||\n\n");
+    read_info(result);
+    result = Delete_student(result);
+    read_info(result);
+    Modify(&result);
     read_info(result);
 
     free(result.list);
