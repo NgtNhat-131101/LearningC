@@ -18,11 +18,9 @@
         **pointer_to_pointer = &pt;
         `pointer_to_pointer points to address of pt`
     
-<center>
-
-![Local Image](p2p.png)
-
-</center>
+<div style="text-align:center">
+    <img src="p2p.png" alt="Local Image">
+</div>
 
 - The purposes of a level-2 pointer are:
 
