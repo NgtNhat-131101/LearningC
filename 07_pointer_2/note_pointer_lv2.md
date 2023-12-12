@@ -11,7 +11,7 @@
     > In this case: `*pt is 5` and `pt is address of "value"`
 
 #### Pointer 2:
-- We need to modify value of register that pointer points to \> So we need to use pointer level 2
+- We need to modify value of register that pointer points to \-> So we need to use pointer level 2
 
 - Continue the above code:
 

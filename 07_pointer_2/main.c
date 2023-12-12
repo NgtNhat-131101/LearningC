@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+void allocate_dynamic(int **p, int n)
+{
+    int *_pointer = (int *)calloc(n, sizeof(int));
+    *p = _pointer;
+}
+
 int main()
 {
     int value = 5;
@@ -23,5 +29,12 @@ int main()
     // Print the value stored at the address pointed to by `pt` (value of `value`)
     printf("**p2p = %d\n", **p2p);
 
+    int *pointer = NULL;
+
+    int n = 10;
+
+    allocate_dynamic(&pointer, n);
+    pointer[0] = 10;
+    printf("%d\n", pointer[0]);
     return 0;
 }
