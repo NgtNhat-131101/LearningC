@@ -1,9 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-void allocate_dynamic(int **p, int n)
+// void allocate_dynamic(int **p, int n)
+// {
+//     *p = calloc(n, sizeof(int));
+// }
+
+void writeArray(int **arr, int n)
 {
-    int *_pointer = (int *)calloc(n, sizeof(int));
-    *p = _pointer;
+    if (arr == NULL || n <= 0)
+    {
+        printf("Invalid array or size");
+        return;
+    }
+    for (int i = 0; i <n ; i++)
+    {
+        arr[i] = calloc(n, sizeof(int));
+        if (arr[i] == NULL)
+        {
+            printf("Memory allocate invalid");
+            exit(1);
+        }
+        printf("Enter element %d: ", i);
+        scanf("%d", arr[i]);
+    }
 }
 
 int main()
@@ -31,10 +51,14 @@ int main()
 
     int *pointer = NULL;
 
-    int n = 10;
+    // int n = 10;
+    printf("====================================\n");
+    int n;
+    printf("Enter the number of array: ");
+    scanf("%d", &n);
+    int **array = (int **)malloc(n*sizeof(int *));
 
-    allocate_dynamic(&pointer, n);
-    pointer[0] = 10;
-    printf("%d\n", pointer[0]);
+    writeArray(array, n);
+
     return 0;
 }
