@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
+
 
 void processingUART(char *data, int lenght)
 {
