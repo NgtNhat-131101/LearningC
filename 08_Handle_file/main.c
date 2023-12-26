@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include "inc/headers.h"
 
 
 void processingUART(char *data, int lenght)
@@ -33,5 +34,6 @@ void processingUART_2(char *data, int len)
 
 int main()
 {
+    print_hello();
     return 0;
 }
